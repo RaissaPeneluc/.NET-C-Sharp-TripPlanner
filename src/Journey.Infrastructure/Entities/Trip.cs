@@ -1,4 +1,8 @@
 ﻿namespace Journey.Infrastructure.Entities;
+
+/* Entidade que tem que espelhar
+ * igualmente a maneira que ela
+ * se encontra no banco de dados. */
 public class Trip
 {
     public Guid Id { get; set; } = Guid.NewGuid();

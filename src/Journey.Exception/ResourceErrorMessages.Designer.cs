@@ -72,9 +72,9 @@ namespace Journey.Exception {
         /// <summary>
         ///   Looks up a localized string similar to The end date of the trip must be equal to or later than the Start Date..
         /// </summary>
-        public static string END_DATE_TRIP_MUST_BE_LATER_START_DTE {
+        public static string END_DATE_TRIP_MUST_BE_LATER_START_DATE {
             get {
-                return ResourceManager.GetString("END_DATE_TRIP_MUST_BE_LATER_START_DTE", resourceCulture);
+                return ResourceManager.GetString("END_DATE_TRIP_MUST_BE_LATER_START_DATE", resourceCulture);
             }
         }
         

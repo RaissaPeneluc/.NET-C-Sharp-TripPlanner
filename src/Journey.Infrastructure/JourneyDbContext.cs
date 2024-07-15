@@ -14,10 +14,13 @@ namespace Journey.Infrastructure
         // DbSet<Trip> Trips -> Informa a entidade e é um acesso direto a tabela Trips no DbContext.
         public DbSet<Trip> Trips { get; set; }
 
+
         // optionsBuilder -> Configurando o tradutor, para traduzir uma entidade, para ter acesso ao banco de dados
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Data Source = I:\\Journey\\JourneyDatabase.db");
         }
+
+        protected override void
     }
 }

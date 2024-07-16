@@ -6,7 +6,7 @@
 namespace Journey.Exception.ExceptionsBase
 {
 
-    public class JourneyException : SystemException
+    public abstract class JourneyException : SystemException
     {
 
         // : base(message) -> Vai repassar a mensagem recebida para o construtor da classe SystemException.

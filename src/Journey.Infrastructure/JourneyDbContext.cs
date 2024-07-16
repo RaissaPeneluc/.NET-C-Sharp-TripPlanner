@@ -15,12 +15,19 @@ namespace Journey.Infrastructure
         public DbSet<Trip> Trips { get; set; }
 
 
-        // optionsBuilder -> Configurando o tradutor, para traduzir uma entidade, para ter acesso ao banco de dados
+        // optionsBuilder -> Configurando o tradutor, para traduzir uma entidade, para ter acesso ao banco de dados.
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Data Source = I:\\Journey\\JourneyDatabase.db");
         }
 
-        protected override void
+        // Para acessar as atividades através da entidade Trip sem precisar de um acesso/link direto a tabela de Activities.
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Mostrando pro Entity que a entidade Activity vai ser pega da tabela Activities.
+            modelBuilder.Entity<Activity>().ToTable("Activities");
+        }
     }
 }

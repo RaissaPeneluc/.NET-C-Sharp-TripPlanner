@@ -12,17 +12,20 @@ namespace Journey.Api.Filters
 {
     public class ExceptionFilter : IExceptionFilter
     {
+        // OneExeception() -> Vai ser chamado automaticamente quando uma exceção não tratada ocorre durante o processamento de uma requisição. Ele modifica a resposta HTTP com base no tipo da exceção capturada.
         public void OnException(ExceptionContext context)
         {
-            if (context.Exception is NotFoundException) 
+            if (context.Exception is JourneyException)
             {
-                context.HttpContext.Response.StatusCode = StatusCodes.Status404NotFound;
-                context.Result = new NotFoundObjectResult(context.Exception.Message);   
+                var journeyException = (JourneyException)context.Exception;
+
+                context.HttpContext.Response.StatusCode = (int)journeyException.GetStatusCode();
+                context.Result = new ObjectResult(context.Exception.Message);
             }
-            else if (context.Exception is ErrorOnValidationException)
+            else 
             {
-                context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
-                context.Result = new BadRequestObjectResult(context.Exception.Message);
+                context.HttpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
+                context.Result = new ObjectResult("Erro desconhecido.");
             }
         }
     }

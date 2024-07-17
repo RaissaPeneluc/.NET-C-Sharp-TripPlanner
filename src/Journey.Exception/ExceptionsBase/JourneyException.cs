@@ -3,6 +3,8 @@
  * especificamente as mensagens de determinados 
  * erros. */
 
+using System.Net;
+
 namespace Journey.Exception.ExceptionsBase
 {
 
@@ -14,6 +16,8 @@ namespace Journey.Exception.ExceptionsBase
         {
             
         }
+
+        public abstract HttpStatusCode GetStatusCode();
 
     }
 }

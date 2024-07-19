@@ -19,5 +19,7 @@ namespace Journey.Exception.ExceptionsBase
 
         public abstract HttpStatusCode GetStatusCode();
 
+        // Obrigando a toda classe que tiver uma herança com o JourneyException, sempre devolver uma lista de mensagens de exceção.
+        public abstract IList<string> GetErrorsMessages();
     }
 }

@@ -43,21 +43,22 @@ namespace Journey.Application.UseCases.Trips.Register
             };
         }
 
+        // Validate() -> É um método privado que valida um objeto RequestRegisterTripJson usando o validador RegisterTripValidator. Se a validação falhar, ele coleta as mensagens de erro e lança uma exceção ErrorOnValidationException.
         private void Validate(RequestRegisterTripJson request)
         {
-            if (string.IsNullOrWhiteSpace(request.Name))
-            {
-                throw new ErrorOnValidationException(ResourceErrorMessages.NAME_EMPTY);
-            }
+            var validator = new RegisterTripValidator();
 
-            if (request.StartDate.Date < DateTime.UtcNow.Date) 
-            {
-                throw new ErrorOnValidationException(ResourceErrorMessages.DATE_TRIP_MUST_BE_LATER_THAN_TODAY);
-            }
+            // Usa o validador para validar o objeto request. O resultado da validação é armazenado em result.
+            var result = validator.Validate(request);
 
-            if (request.EndDate.Date < request.StartDate.Date)
+            if (result.IsValid)
             {
-                throw new ErrorOnValidationException(ResourceErrorMessages.END_DATE_TRIP_MUST_BE_LATER_START_DATE);
+                // Se a validação falhou, as mensagens de erro são coletadas. result.Errors é uma coleção de erros de validação.
+                // .Select() -> Com esse método, LINQ (Select), extrai-se a mensagem de erro.
+                // .ToList() ->  Com esse método, converte-se a coleção em uma lista.
+                var errorMessages = result.Errors.Select(error => error.ErrorMessage).ToList();
+
+                throw new ErrorOnValidationException(errorMessages);
             }
         }
     }

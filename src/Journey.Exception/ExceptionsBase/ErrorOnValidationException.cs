@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Reflection.Metadata.Ecma335;
 
 /* Esta classe herda de uma classe base
  * chamada JourneyException e é usada para
@@ -20,10 +21,7 @@ namespace Journey.Exception.ExceptionsBase
 
         public override IList<string> GetErrorsMessages()
         {
-            return new List<string>()
-           {
-               Message
-            };
+            return _errors;
         }
 
         public override HttpStatusCode GetStatusCode()

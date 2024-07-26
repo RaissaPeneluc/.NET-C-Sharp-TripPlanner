@@ -24,3 +24,4 @@ namespace Journey.Exception.ExceptionsBase
         }
     }
 }
+

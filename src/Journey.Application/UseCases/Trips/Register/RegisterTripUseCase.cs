@@ -51,7 +51,7 @@ namespace Journey.Application.UseCases.Trips.Register
             // Usa o validador para validar o objeto request. O resultado da validação é armazenado em result.
             var result = validator.Validate(request);
 
-            if (result.IsValid)
+            if (result.IsValid == false)
             {
                 // Se a validação falhou, as mensagens de erro são coletadas. result.Errors é uma coleção de erros de validação.
                 // .Select() -> Com esse método, LINQ (Select), extrai-se a mensagem de erro.
